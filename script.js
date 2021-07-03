@@ -1,10 +1,12 @@
 const formFile = document.querySelector("#formFileLg");
 const displayHtml = document.querySelector("#displayText");
 const checkButton = document.querySelector("#checkButton");
-
+const errorHtml = document.querySelector(".error");
+console.log;
 formFile.addEventListener("change", function () {
   checkButton.style.visibility = "visible";
   let file = formFile.files[0];
+  console.log(file);
   let reader = new FileReader();
   reader.addEventListener("load", function (e) {
     let text = e.target.result;
@@ -20,24 +22,22 @@ checkButton.addEventListener("click", function (event) {
   let lines = displayHtml.innerHTML.split("\n");
   lines.forEach(async (line, index) => {
     return fetch(
-      `https://api.textgears.com/spelling?text=${line}&language=en-US&whitelist=&dictionary_id=&key=z88J6TXRGQ8HDrxp`
+      `https://api.textgears.com/spelling?text=${line}&language=en-GB&whitelist=&dictionary_id=&key=z88J6TXRGQ8HDrxp`
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         data.response.errors.forEach((error) => {
-          console.log(error);
+          console.log(error.bad);
           let suggestion = "";
           error.better.forEach((element) => {
-            suggestion += `<li id="${element}">${element}</li>`;
+            suggestion += `<li class="my-tooltip-options">${element}</li>`;
           });
-          let suggestionHTML = `<ul>${suggestion}</ul>`;
-
-          // let suggestions =
+          let newHtml = `<div class="my-tooltip">${error.bad}<span class="my-tooltiptext"><ul>${suggestion}</ul></span></div>`;
           displayHtml.innerHTML = displayHtml.innerHTML.replace(
             error.bad,
-            `<span data-toggle="tooltip" data-placement="bottom" title="<h1>suggestionHTML</h1>" style="border-bottom:2px solid red;background-color:rgba(220, 20, 60, .1)">${error.bad}</span>`
+            newHtml
           );
         });
       });

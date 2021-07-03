@@ -1,0 +1,69 @@
+pre {
+  padding: 5%;
+  overflow: visible;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* my-tooltip container */
+.my-tooltip {
+  color: black !important;
+  border-bottom: 2px solid red;
+  background-color: rgba(220, 20, 60, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.my-tooltip-options {
+  padding: 5px 10px;
+}
+
+.my-tooltip-options:hover {
+  color: white;
+  background-color: #2cb673;
+  cursor: pointer;
+}
+
+/* my-tooltip text */
+.my-tooltip .my-tooltiptext {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  font-weight: bold;
+
+  /* Position the my-tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in my-tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* my-tooltip arrow */
+.my-tooltip .my-tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the my-tooltip text when you mouse over the my-tooltip container */
+.my-tooltip:hover .my-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
