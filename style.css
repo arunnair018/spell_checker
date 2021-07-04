@@ -5,7 +5,10 @@ form {
   display: none;
   color: red;
 }
-pre {
+.pre {
+  white-space: pre-wrap;
+  text-align: left;
+  overflow-wrap: break-word;
   padding: 5%;
   overflow: visible;
 }

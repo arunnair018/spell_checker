@@ -48,7 +48,7 @@ checkButton.addEventListener("click", function (event) {
           // create new html and replace the word with highlighting and suggestion
           // to new html, add eventlistner to be invoked when clciked on suggestion
           let newHtml = `<div class="my-tooltip">${error.bad}<span class="my-tooltiptext"><ul>${suggestion}</ul></span></div>`;
-          displayHtml.innerHTML = displayHtml.innerHTML.replace(
+          displayHtml.innerHTML = displayHtml.innerHTML.replaceAll(
             error.bad,
             newHtml
           );
