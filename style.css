@@ -1,3 +1,10 @@
+form {
+  text-align: center;
+}
+#error {
+  display: none;
+  color: red;
+}
 pre {
   padding: 5%;
   overflow: visible;
