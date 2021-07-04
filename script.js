@@ -31,8 +31,8 @@ checkButton.addEventListener("click", function (event) {
         data.response.errors.forEach((error) => {
           console.log(error.bad);
           let suggestion = "";
-          error.better.forEach((element) => {
-            suggestion += `<li class="my-tooltip-options">${element}</li>`;
+          error.better.forEach((element, index) => {
+            suggestion += `<li class="my-tooltip-options ${error.bad}-${index}" onclick="handleChange()">${element}</li>`;
           });
           let newHtml = `<div class="my-tooltip">${error.bad}<span class="my-tooltiptext"><ul>${suggestion}</ul></span></div>`;
           displayHtml.innerHTML = displayHtml.innerHTML.replace(
@@ -43,3 +43,8 @@ checkButton.addEventListener("click", function (event) {
       });
   });
 });
+
+const handleChange = function () {
+  let parent = this.event.target.closest(".my-tooltip");
+  parent.replaceWith(this.event.target.innerHTML);
+};
